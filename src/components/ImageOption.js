@@ -1,18 +1,28 @@
 import { StyleSheet, Text, View, Image } from "react-native";
+import PropTypes from "prop-types"; 
 
-export default function ImageOption(props) {
+export default function ImageOption({image, title}) {
   return (
     <View style={styles.optionContainer}>
       <Image
         resizeMode="contain"
         source={{
-          uri: props.image,
+          uri: image,
         }}
         style={styles.optionImage}
       />
-      <Text style={styles.optionText}>{props.title}</Text>
+      <Text style={styles.optionText}>{title}</Text>
     </View>
   );
+}
+
+ImageOption.propTypes = {
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+}
+
+ImageOption.defaultProps = {
+  title: "Default",
 }
 
 const styles = StyleSheet.create({

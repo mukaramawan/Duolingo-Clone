@@ -8,7 +8,6 @@ export default function App() {
       <Text style={styles.title}>{Question.question}</Text>
 
       <View style={styles.optionsContainer}>
-        
         {Question.options.map((option) => (
           <ImageOption
             image={option.image}
@@ -16,23 +15,6 @@ export default function App() {
             key={option.id}
           />
         ))}
-
-        {/* <ImageOption
-          image={Question.options[0].image}
-          title={Question.options[0].text}
-        />
-        <ImageOption
-          image={Question.options[1].image}
-          title={Question.options[1].text}
-        />
-        <ImageOption
-          image={Question.options[2].image}
-          title={Question.options[2].text}
-        />
-        <ImageOption
-          image={Question.options[3].image}
-          title={Question.options[3].text}
-        /> */}
       </View>
     </View>
   );
