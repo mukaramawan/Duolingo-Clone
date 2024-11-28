@@ -5,7 +5,7 @@ export default {
       id: "option1",
       image:
         "https://fsmd-assets.s3.eu-west-1.amazonaws.com/duolingo/images/cup.png",
-      text: "cup",
+      // text: "cup",
     },
     {
       id: "option2",

@@ -1,9 +1,15 @@
-import { StyleSheet, Text, View, Image } from "react-native";
-import PropTypes from "prop-types"; 
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import PropTypes from "prop-types";
 
-export default function ImageOption({image, title}) {
+export default function ImageOption({image,title = "default",isSelected,onPress,}) {
   return (
-    <View style={styles.optionContainer}>
+    <Pressable
+      onPress={onPress}
+      style={[
+        styles.optionContainer,
+        isSelected ? styles.selectedContainer : {},
+      ]}
+    >
       <Image
         resizeMode="contain"
         source={{
@@ -11,19 +17,17 @@ export default function ImageOption({image, title}) {
         }}
         style={styles.optionImage}
       />
-      <Text style={styles.optionText}>{title}</Text>
-    </View>
+      <Text style={[styles.optionText, isSelected ? styles.selectedText : {}]}>
+        {title}
+      </Text>
+    </Pressable>
   );
 }
 
 ImageOption.propTypes = {
   image: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-}
-
-ImageOption.defaultProps = {
-  title: "Default",
-}
+  title: PropTypes.string,
+};
 
 const styles = StyleSheet.create({
   optionContainer: {
@@ -38,10 +42,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 10,
   },
+  selectedContainer: {
+    backgroundColor: "#ddf4fe",
+    borderColor: "#81d5fe",
+  },
   optionImage: {
     width: "100%",
     height: "100%",
     flex: 1,
   },
-  optionText: {},
+  optionText: {
+    fontWeight: "bold",
+  },
+  selectedText: {
+    color: "#40bef7",
+  },
 });
