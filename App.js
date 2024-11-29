@@ -2,9 +2,15 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { useState } from "react";
 import ImageOption from "./src/components/ImageOption";
 import Question from "./assets/data/oneQuestionWithOption";
+import Button from "./src/components/Button";
 
 export default function App() {
   const [Selected, setSelected] = useState();
+
+  function buttonPressed(){
+    console.warn('Button Clicked!!!');
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{Question.question}</Text>
@@ -20,6 +26,7 @@ export default function App() {
           />
         ))}
       </View>
+      <Button title="Check" onPress={buttonPressed} disabled={!Selected} />
     </View>
   );
 }
