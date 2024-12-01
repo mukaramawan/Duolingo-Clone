@@ -1,32 +1,38 @@
-import { StyleSheet, Text, View, Image } from "react-native";
-import { useState } from "react";
-import ImageOption from "./src/components/ImageOption";
-import Question from "./assets/data/oneQuestionWithOption";
-import Button from "./src/components/Button";
+import { StyleSheet, View, Alert } from "react-native";
+import { useState, useEffect } from "react";
+import Questions from "./assets/data/imageMulatipleChoiceQuestions";
+import ImageMulatipleChoiceQuestion from "./src/components/ImageMultipleChoiceQuestion/ImageMultipleChoiceQuestion";
 
 export default function App() {
-  const [Selected, setSelected] = useState();
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(
+    Questions[currentQuestionIndex]
+  );
 
-  function buttonPressed(){
-    console.warn('Button Clicked!!!');
+  useEffect(() => {
+    if (currentQuestionIndex >= Questions.length) {
+      Alert.alert("You Won!");
+      setCurrentQuestionIndex(0);
+    } else {
+      setCurrentQuestion(Questions[currentQuestionIndex]);
+    }
+  }, [currentQuestionIndex]);
+
+  function onCorrect() {
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+  }
+
+  function onWrong() {
+    Alert.alert("Wroong");
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{Question.question}</Text>
-
-      <View style={styles.optionsContainer}>
-        {Question.options.map((option) => (
-          <ImageOption
-            image={option.image}
-            title={option.text}
-            key={option.id}
-            isSelected={Selected?.id === option.id}
-            onPress={()=>setSelected(option)}
-          />
-        ))}
-      </View>
-      <Button title="Check" onPress={buttonPressed} disabled={!Selected} />
+      <ImageMulatipleChoiceQuestion
+        Question={currentQuestion}
+        onCorrect={onCorrect}
+        onWrong={onWrong}
+      />
     </View>
   );
 }
@@ -39,19 +45,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 10,
     paddingTop: 40,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    alignSelf: "stretch",
-  },
-  optionsContainer: {
-    flex: 1,
-    width: "100%",
-    flexDirection: "row",
-    flexWrap: "wrap",
-
-    justifyContent: "space-between",
-    alignContent: "space-between",
   },
 });
