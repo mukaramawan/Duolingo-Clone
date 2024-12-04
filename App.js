@@ -1,10 +1,13 @@
 import { StyleSheet, View, Alert } from "react-native";
 import { useState, useEffect } from "react";
-import Questions from "./assets/data/imageMulatipleChoiceQuestions";
+//import Questions from "./assets/data/imageMulatipleChoiceQuestions";
 import ImageMulatipleChoiceQuestion from "./src/components/ImageMultipleChoiceQuestion/ImageMultipleChoiceQuestion";
+import OpenEndedQuestion from "./src/components/OpenEndedQuestion";
+import Questions from "./assets/data/openEndedQuestions";
 
 export default function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
   const [currentQuestion, setCurrentQuestion] = useState(
     Questions[currentQuestionIndex]
   );
@@ -28,7 +31,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <ImageMulatipleChoiceQuestion
+      {/* <ImageMulatipleChoiceQuestion
+        Question={currentQuestion}
+        onCorrect={onCorrect}
+        onWrong={onWrong}
+      /> */}
+      <OpenEndedQuestion
         Question={currentQuestion}
         onCorrect={onCorrect}
         onWrong={onWrong}
