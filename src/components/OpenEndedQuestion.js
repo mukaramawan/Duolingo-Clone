@@ -7,13 +7,12 @@ function OpenEndedQuestion({ Question, onCorrect, onWrong }) {
   const [input, setInput] = useState("");
 
   function buttonPressed() {
-    if(input.toLowerCase().trim() === Question.answer.toLowerCase().trim()){
+    if (input.toLowerCase().trim() === Question.answer.toLowerCase().trim()) {
       onCorrect();
-    }
-    else{
+    } else {
       onWrong();
     }
-    setInput("")
+    setInput("");
   }
 
   return (
