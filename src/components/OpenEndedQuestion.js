@@ -31,7 +31,7 @@ function OpenEndedQuestion({ Question, onCorrect, onWrong }) {
         value={input}
         onChangeText={setInput}
       />
-      <Button title="Check" onPress={buttonPressed} disabled={false} />
+      <Button title="Check" onPress={buttonPressed} disabled={!input} />
     </>
   );
 }
