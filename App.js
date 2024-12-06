@@ -1,9 +1,10 @@
-import { StyleSheet, View, Alert } from "react-native";
+import { StyleSheet, View, Alert, ActivityIndicator } from "react-native";
 import { useState, useEffect } from "react";
 import ImageMulatipleChoiceQuestion from "./src/components/ImageMultipleChoiceQuestion/ImageMultipleChoiceQuestion";
 import OpenEndedQuestion from "./src/components/OpenEndedQuestion";
 import Questions from "./assets/data/allQuestions";
 import Header from "./src/components/Header";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(1);
@@ -13,6 +14,8 @@ export default function App() {
   );
 
   const [Lives, setLives] = useState(5);
+
+  const [hasLoaded, sethasLoaded] = useState(false);
 
   useEffect(() => {
     if (currentQuestionIndex >= Questions.length) {
@@ -44,6 +47,40 @@ export default function App() {
       Alert.alert("Wroong");
       setLives(Lives - 1);
     }
+  }
+
+  const saveData = async () => {
+    await AsyncStorage.setItem("Lives", Lives.toString());
+    await AsyncStorage.setItem(
+      "currentQuestionIndex",
+      currentQuestionIndex.toString()
+    );
+  };
+
+  const loadData = async () => {
+    const LoadedLives = await AsyncStorage.getItem("Lives");
+    if (LoadedLives) {
+      setLives(parseInt(LoadedLives));
+    }
+    const LoadedIndex = await AsyncStorage.getItem("currentQuestionIndex");
+    if (LoadedIndex) {
+      setCurrentQuestionIndex(parseInt(LoadedIndex));
+    }
+    sethasLoaded(true);
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  useEffect(() => {
+    if (hasLoaded) {
+      saveData();
+    }
+  }, [currentQuestionIndex, Lives, hasLoaded]);
+
+  if (!hasLoaded) {
+    return <ActivityIndicator />;
   }
 
   return (
