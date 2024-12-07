@@ -21,14 +21,28 @@ function FillInTheBlanks({ Question, onCorrect, onWrong }) {
     <>
       <Text style={styles.title}>Complete the Sentence</Text>
 
-      <View style={styles.row}>
-        <Text style={styles.text}>{Question.question}</Text>
-        <View style={styles.blank}>
-          {Selected && (
-            <WordOptions text={Selected} onPress={() => setSelected(null)} />
-          )}
+      {Question.questPre && (
+        <View style={styles.row}>
+          <Text style={styles.text}>{Question.questPre}</Text>
+          <View style={styles.blank}>
+            {Selected && (
+              <WordOptions text={Selected} onPress={() => setSelected(null)} />
+            )}
+          </View>
+          <Text style={styles.text}>{Question.questPost}</Text>
         </View>
-      </View>
+      )}
+
+      {Question.question && (
+        <View style={styles.row}>
+          <Text style={styles.text}>{Question.question}</Text>
+          <View style={styles.blank}>
+            {Selected && (
+              <WordOptions text={Selected} onPress={() => setSelected(null)} />
+            )}
+          </View>
+        </View>
+      )}
 
       <View style={styles.optionsContainer}>
         {Question.options.map((option) => (
@@ -40,7 +54,6 @@ function FillInTheBlanks({ Question, onCorrect, onWrong }) {
           />
         ))}
       </View>
-
       <Button title="Check" onPress={buttonPressed} disabled={!Selected} />
     </>
   );
