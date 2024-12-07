@@ -1,5 +1,12 @@
 export default [
   {
+    id: "q00",
+    type: "FILL_IN_THE_BLANK",
+    question: "una nina, una ",
+    options: ["la", "ya", "mujer", "el"],
+    correct: "mujer"
+  },
+  {
     id: "q0",
     type: "FILL_IN_THE_BLANK",
     parts: [

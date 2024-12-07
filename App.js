@@ -4,10 +4,12 @@ import ImageMulatipleChoiceQuestion from "./src/components/ImageMultipleChoiceQu
 import OpenEndedQuestion from "./src/components/OpenEndedQuestion";
 import Questions from "./assets/data/allQuestions";
 import Header from "./src/components/Header";
+import FillInTheBlanks from "./src/components/FillInTheBlanks";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(1);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const [currentQuestion, setCurrentQuestion] = useState(
     Questions[currentQuestionIndex]
@@ -32,11 +34,11 @@ export default function App() {
 
   function restart() {
     setLives(5);
-    setCurrentQuestionIndex(1);
+    setCurrentQuestionIndex(0);
   }
 
   function onWrong() {
-    if (Lives < 1) {
+    if (Lives <= 2) {
       Alert.alert("Game Over", "Try Again!", [
         {
           text: "Try Again",
@@ -90,6 +92,13 @@ export default function App() {
         lives={Lives}
       />
 
+      {currentQuestion.type === "FILL_IN_THE_BLANK" && (
+        <FillInTheBlanks
+          Question={currentQuestion}
+          onCorrect={onCorrect}
+          onWrong={onWrong}
+        />
+      )}
       {currentQuestion.type === "IMAGE_MULTIPLE_CHOICE" && (
         <ImageMulatipleChoiceQuestion
           Question={currentQuestion}
@@ -111,7 +120,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
