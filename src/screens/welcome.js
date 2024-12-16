@@ -14,7 +14,7 @@ function Welcome() {
 
       <Text style={styles.subheading}>Learn a language for free!</Text>
 
-      <Button title="Get Started" onPress={() => navigation.navigate('App')} />
+      <Button title="Get Started" onPress={() => navigation.navigate('Login')} />
     </View>
   );
 }

@@ -71,7 +71,6 @@ export default [
   },
   {
     id: "q4",
-    type: "IMAGE_MULTIPLE_CHOICE",
     type: "OPEN_ENDED",
     text: "La mujer",
     answer: "the woman",
@@ -161,27 +160,27 @@ export default [
     options: ["naina", "ya", "mujer", "el"],
     correct: "naina",
   },
-  {
-    id: "q9",
-    type: "FILL_IN_THE_BLANK",
-    parts: [
-      {
-        text: "la",
-        isBlank: true,
-      },
-      {
-        text: "nino",
-        isBlank: true,
-      },
-      {
-        text: "el",
-        isBlank: true,
-      },
-      {
-        text: "nina",
-        isBlank: true,
-      },
-    ],
-    options: ["la", "el", "nina", "nino", "ella"],
-  },
+  // {
+  //   id: "q9",
+  //   type: "FILL_IN_THE_BLANK",
+  //   parts: [
+  //     {
+  //       text: "la",
+  //       isBlank: true,
+  //     },
+  //     {
+  //       text: "nino",
+  //       isBlank: true,
+  //     },
+  //     {
+  //       text: "el",
+  //       isBlank: true,
+  //     },
+  //     {
+  //       text: "nina",
+  //       isBlank: true,
+  //     },
+  //   ],
+  //   options: ["la", "el", "nina", "nino", "ella"],
+  // },
 ];

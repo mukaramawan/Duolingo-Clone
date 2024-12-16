@@ -38,7 +38,7 @@ export default function App() {
   }
 
   function onWrong() {
-    if (Lives <= 2) {
+    if (Lives <= 1) {
       Alert.alert("Game Over", "Try Again!", [
         {
           text: "Try Again",
@@ -82,7 +82,15 @@ export default function App() {
   }, [currentQuestionIndex, Lives, hasLoaded]);
 
   if (!hasLoaded) {
-    return <ActivityIndicator />;
+        return (
+          <View style={styles.container}>
+          <ActivityIndicator
+            style={{ marginTop: 10, marginBottom: 30}}
+            size="large"
+            color="#58cc02"
+          />
+          </View>
+        );
   }
 
   return (
