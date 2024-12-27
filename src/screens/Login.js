@@ -72,7 +72,7 @@ function Login() {
         <ActivityIndicator
           style={{ marginTop: 10, marginBottom: 30 }}
           size="large"
-          color="#58cc02"
+          color="#57a600"
         />
       ) : (
         <Button title="Log In" onPress={onLogin} />
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   loginTxt: {
     fontSize: 28,
     fontWeight: "bold",
-    color: "#58cc02",
+    color: "#57a600",
     textAlign: "center",
     marginBottom: 10,
   },
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
   createAccount: {
     textAlign: "center",
-    color: "#58cc02",
+    color: "#57a600",
     marginBottom: 20,
   },
   orText: {

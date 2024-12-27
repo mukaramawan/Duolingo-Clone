@@ -6,11 +6,14 @@ import { AuthContext, AuthProvider } from "./hooks/AuthContext";
 import Welcome from "./src/screens/welcome";
 import Login from "./src/screens/Login";
 import Signup from "./src/screens/Signup";
+import Home from "./src/screens/Home";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AppEntry from "./AppEntry";
 import { supabase } from "./lib/supabase";
 import { ActivityIndicator } from "react-native";
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function Root() {
   const { setAuth } = useContext(AuthContext);
@@ -47,17 +50,30 @@ function Root() {
         <ActivityIndicator
           style={{ marginTop: 10, marginBottom: 30 }}
           size="large"
-          color="#58cc02"
+          color="#57a600"
         />
       </View>
     );
   }
 
+  const Home = () => {
+    return (
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={Home} />
+      </Tab.Navigator>
+    );
+  };
+
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {session ? (
-          <Stack.Screen name="AppEntry" component={AppEntry} />
+          //  <Stack.Screen name="AppEntry" component={AppEntry} />
+          <Stack.Screen
+            name="MainTabNavigator"
+            component={Home}
+           options={{ headerShown: false }}
+          />
         ) : (
           <>
             <Stack.Screen name="Welcome" component={Welcome} />
